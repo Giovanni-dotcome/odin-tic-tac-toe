@@ -5,6 +5,7 @@ export function createDOM(game, elements) {
     game.reset()
     display()
   });
+
   const createBoard = () => {
     const board = game.getBoard;
     elements.grid.innerHTML = ``;
