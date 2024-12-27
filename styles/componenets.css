@@ -10,7 +10,7 @@
 }
 
 .cell {
-    border: 2px solid black;
+    border: 2px solid white;
     font-size: 5rem;
     /* center content */
     text-align: center;
@@ -64,7 +64,8 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: darkred;
+    background-color: white;
+    color: black;
 }
 @media only screen and (max-width: 1024px) {
     .cell {

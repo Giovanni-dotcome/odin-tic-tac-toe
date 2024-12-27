@@ -10,6 +10,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 2.5rem 15rem;
+    background-color: black;
+    color: white;
 }
 
 img {
