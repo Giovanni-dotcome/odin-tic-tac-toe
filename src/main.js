@@ -10,5 +10,4 @@ const elements = {
   reset: document.querySelector('#reset')
 }
 
-const game = createGame();
-createDOM(game, elements);
+createDOM(createGame(), elements);
