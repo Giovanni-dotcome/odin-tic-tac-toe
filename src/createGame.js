@@ -1,8 +1,13 @@
 import { createBoard } from './createBoard.js';
 
 export function createGame(player1, player2) {
-  let player1Turn = true;
+  let playerXTurn = true;
   const board = createBoard();
+  const score = {
+    xWins: 0,
+    yWins: 0,
+    ties: 0
+  }
 
   const checkWin = () => {
     const boardState = board.getBoard();
@@ -43,26 +48,28 @@ export function createGame(player1, player2) {
 
   const resetGame = () => {
     board.reset();
-    player1Turn = true;
+    playerXTurn = true;
+    score.xWins = score.yWins = score.ties = 0;
   };
 
   const makeMove = (y, x) => {
-    const moveMade = board.mark(y, x, player1Turn ? player1.marker : player2.marker);
-    board.display();
-
+    const moveMade = board.mark(y, x, playerXTurn ? player1.marker : player2.marker);
     if (checkWin()) {
-      console.log(`The winner is ${player1Turn ? player1.name : player2.name}`);
-      resetGame();
+      if (playerXTurn)
+        score.xWins++;
+      else
+        score.yWins++;
+      board.reset();
+      playerXTurn = true;
     } else if (checkTie()) {
-      console.log("It's a tie!");
-      resetGame();
-    } else {
-      if (moveMade) {
-        player1Turn = !player1Turn;
-      }
+      score.ties++;
+      board.reset();
+      playerXTurn = true;
+    } else if (moveMade) {
+      playerXTurn = !playerXTurn;
     }
   };
 
-  return { move: makeMove, checkWin, reset: resetGame, getBoard: board.getBoard() };
+  return { move: makeMove, checkWin, reset: resetGame, getBoard: board.getBoard(), getScore: () => score, getPlayer1Turn: () => playerXTurn };
 }
 

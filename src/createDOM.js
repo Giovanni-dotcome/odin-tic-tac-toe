@@ -1,16 +1,12 @@
-export function createDOM(game) {
+export function createDOM(game, turn, grid, footer) {
   const createBoard = () => {
-    const grid = document.createElement('div');
     const board = game.getBoard;
-    grid.classList.add('grid');
-    grid.id = 'board';
-
+    grid.innerHTML = ``;
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
         grid.append(createCell(i, j, board[i][j]));
       }
     }
-
     return grid;
   }
 
@@ -21,17 +17,20 @@ export function createDOM(game) {
     cell.innerText = marker;
     cell.addEventListener('click', () => {
       game.move(y, x, marker)
+      display()
     })
 
     return cell;
   }
 
   const display = () => {
-    const board = createBoard();
-    const body = document.querySelector('body')
-    body.append(board);
-  }
-
+    // TODO: inefficient code, create a way in which you do query selector once, and rerender only the cell is clicked (without rerendering all the board)
+    turn.innerText = game.getPlayer1Turn() ? 'X' : 'O';
+    footer.querySelector('#scoreY').innerText = game.getScore().yWins;
+    footer.querySelector('#scoreX').innerText = game.getScore().xWins;
+    footer.querySelector('#scoreTies').innerText = game.getScore().ties;
+    createBoard();
+  };
 
   return { display };
 }
