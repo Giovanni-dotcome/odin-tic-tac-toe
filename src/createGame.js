@@ -11,35 +11,18 @@ export function createGame() {
   }
 
   const checkWin = () => {
+    const checkLine = (a, b, c) => a === b && b === c && a !== '';
     const boardState = board.getBoard();
 
-    // Check horizontal wins
+    // Horizontal and vertical checks
     for (let i = 0; i < 3; i++) {
-      if (boardState[i][0] === boardState[i][1] &&
-        boardState[i][1] === boardState[i][2] &&
-        boardState[i][0] !== '') {
-        return true;
-      }
+      if (checkLine(boardState[i][0], boardState[i][1], boardState[i][2])) return true;
+      if (checkLine(boardState[0][i], boardState[1][i], boardState[2][i])) return true;
     }
 
-    // Check vertical wins
-    for (let i = 0; i < 3; i++) {
-      if (boardState[0][i] === boardState[1][i] &&
-        boardState[1][i] === boardState[2][i] &&
-        boardState[0][i] !== '') {
-        return true;
-      }
-    }
-
-    // Check diagonal wins
-    if (boardState[0][0] === boardState[1][1] &&
-      boardState[1][1] === boardState[2][2] &&
-      boardState[0][0] !== '') {
-      return true;
-    }
-    return boardState[0][2] === boardState[1][1] &&
-      boardState[1][1] === boardState[2][0] &&
-      boardState[0][2] !== '';
+    // Diagonal checks
+    return checkLine(boardState[0][0], boardState[1][1], boardState[2][2]) ||
+      checkLine(boardState[0][2], boardState[1][1], boardState[2][0]);
   };
 
   const checkTie = () => {
