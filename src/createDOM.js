@@ -31,7 +31,6 @@ export function createDOM(game, elements) {
   }
 
   const display = () => {
-    // TODO: inefficient code, create a way in which you do query selector once, and rerender only the cell is clicked (without rerendering all the board)
     elements.turn.innerText = game.getPlayerXTurn() ? markerX : markerO;
     elements.scoreY.innerText = game.getScore().yWins;
     elements.scoreX.innerText = game.getScore().xWins;
@@ -39,6 +38,6 @@ export function createDOM(game, elements) {
     createBoard();
   };
 
-  return { display };
+  display();
 }
 

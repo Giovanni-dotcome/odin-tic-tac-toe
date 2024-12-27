@@ -11,6 +11,4 @@ const elements = {
 }
 
 const game = createGame();
-const DOM = createDOM(game, elements);
-
-DOM.display();
+createDOM(game, elements);
