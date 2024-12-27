@@ -17,7 +17,7 @@ export function createDOM(game, elements) {
 
   const markCell = (y, x, cell) => {
     game.move(y, x, game.getMarker());
-    console.log(game.getBoard);
+    elements.turn.innerText = game.getMarker();
     if (game.over()) {
       game.resetBoard();
       createBoard()
@@ -29,6 +29,7 @@ export function createDOM(game, elements) {
     const cell = document.createElement('div');
     cell.id = `cell_${y}${x}`;
     cell.classList.add('cell');
+    cell.classList.add('click');
 
     cell.addEventListener('click', () => markCell(y, x, cell));
 

@@ -1,13 +1,12 @@
 .grid {
     /* center game board */
-    height: 100vh;
     justify-content: center;
     align-content: center;
 
     /* grid template 3 by 3 */
     display: grid;
-    grid-template-rows: repeat(3, 5rem);
-    grid-template-columns: repeat(3, 5rem);
+    grid-template-rows: repeat(3, 10rem);
+    grid-template-columns: repeat(3, 10rem);
 }
 
 .cell {
@@ -17,12 +16,16 @@
     text-align: center;
     align-content: center;
 }
-.cell:hover {
-    cursor: pointer;
-}
 
 header {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
+}
+header > * {
+    /*flex-grow: 1;*/
+    text-align: center;
+    flex-basis: 20rem;
+    /*border: 1px solid red;*/
 }

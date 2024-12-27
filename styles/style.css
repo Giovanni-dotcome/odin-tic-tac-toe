@@ -1,2 +1,20 @@
 @import url('typography.css');
 @import url('componenets.css');
+
+body {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 15rem;
+}
+
+img {
+    width: 3rem;
+}
+
+.click:hover {
+    cursor: pointer;
+}
