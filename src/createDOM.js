@@ -1,7 +1,6 @@
 export function createDOM(game, elements) {
   elements.reset.addEventListener('click', () => {
     game.reset()
-    game.getScore.xWins = game.getScore.yWins = game.getScore.ties = 0;
     createBoard()
   });
 
@@ -20,7 +19,7 @@ export function createDOM(game, elements) {
     game.move(y, x, game.getMarker());
     console.log(game.getBoard);
     if (game.over()) {
-      game.reset()
+      game.resetBoard();
       createBoard()
     }
     cell.textContent = game.getBoard[y][x];

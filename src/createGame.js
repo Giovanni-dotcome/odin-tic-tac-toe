@@ -31,9 +31,14 @@ export function createGame() {
   };
 
   const resetGame = () => {
+    resetBoard();
+    score.xWins = score.yWins = score.ties = 0;
+  };
+
+  const resetBoard = () => {
     board.reset();
     playerXTurn = true;
-  };
+  }
 
   const over = () => { return checkTie() || checkWin()}
 
@@ -58,6 +63,6 @@ export function createGame() {
     }
   };
 
-  return { move: makeMove, over, reset: resetGame, getBoard: board.getBoard(), getScore: () => score, getMarker };
+  return { move: makeMove, over, reset: resetGame, resetBoard, getBoard: board.getBoard(), getScore: () => score, getMarker };
 }
 
