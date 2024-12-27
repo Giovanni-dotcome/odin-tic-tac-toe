@@ -30,6 +30,7 @@ export function createDOM(game, elements) {
     cell.id = `cell_${y}${x}`;
     cell.classList.add('cell');
     cell.classList.add('click');
+    cell.classList.add('roboto-black');
 
     cell.addEventListener('click', () => markCell(y, x, cell));
 
