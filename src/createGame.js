@@ -1,6 +1,7 @@
 import { createBoard } from './createBoard.js';
+import { markerX, markerO } from './constants.js';
 
-export function createGame(player1, player2) {
+export function createGame() {
   let playerXTurn = true;
   const board = createBoard();
   const score = {
@@ -53,7 +54,7 @@ export function createGame(player1, player2) {
   };
 
   const makeMove = (y, x) => {
-    const moveMade = board.mark(y, x, playerXTurn ? player1.marker : player2.marker);
+    const moveMade = board.mark(y, x, playerXTurn ? markerX : markerO);
     if (checkWin()) {
       if (playerXTurn)
         score.xWins++;
@@ -70,6 +71,6 @@ export function createGame(player1, player2) {
     }
   };
 
-  return { move: makeMove, checkWin, reset: resetGame, getBoard: board.getBoard(), getScore: () => score, getPlayer1Turn: () => playerXTurn };
+  return { move: makeMove, checkWin, reset: resetGame, getBoard: board.getBoard(), getScore: () => score, getPlayerXTurn: () => playerXTurn };
 }
 

@@ -1,3 +1,5 @@
+import { markerX, markerO } from './constants.js';
+
 export function createDOM(game, elements) {
   elements.reset.addEventListener('click', () => {
     game.reset()
@@ -29,7 +31,7 @@ export function createDOM(game, elements) {
 
   const display = () => {
     // TODO: inefficient code, create a way in which you do query selector once, and rerender only the cell is clicked (without rerendering all the board)
-    elements.turn.innerText = game.getPlayer1Turn() ? 'X' : 'O';
+    elements.turn.innerText = game.getPlayerXTurn() ? markerX : markerO;
     elements.scoreY.innerText = game.getScore().yWins;
     elements.scoreX.innerText = game.getScore().xWins;
     elements.scoreTies.innerText = game.getScore().ties;
