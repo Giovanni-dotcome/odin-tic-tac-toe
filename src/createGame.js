@@ -50,27 +50,31 @@ export function createGame() {
   const resetGame = () => {
     board.reset();
     playerXTurn = true;
-    score.xWins = score.yWins = score.ties = 0;
   };
 
+  const over = () => { return checkTie() || checkWin()}
+
+  const getMarker = () => playerXTurn ? markerX : markerO;
+
   const makeMove = (y, x) => {
-    const moveMade = board.mark(y, x, playerXTurn ? markerX : markerO);
+    const moveMade = board.mark(y, x, getMarker());
+    if (!moveMade) return
+    if (!over()) {
+      playerXTurn = !playerXTurn;
+      return
+    }
     if (checkWin()) {
       if (playerXTurn)
         score.xWins++;
       else
         score.yWins++;
-      board.reset();
       playerXTurn = true;
     } else if (checkTie()) {
       score.ties++;
-      board.reset();
       playerXTurn = true;
-    } else if (moveMade) {
-      playerXTurn = !playerXTurn;
     }
   };
 
-  return { move: makeMove, checkWin, reset: resetGame, getBoard: board.getBoard(), getScore: () => score, getPlayerXTurn: () => playerXTurn };
+  return { move: makeMove, over, reset: resetGame, getBoard: board.getBoard(), getScore: () => score, getMarker };
 }
 
