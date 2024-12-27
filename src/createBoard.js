@@ -11,13 +11,6 @@ export function createBoard() {
     return true;
   };
 
-  const display = () => {
-    board.forEach(row => {
-      console.log(row.map(el => el === '' ? ' ' : el).join(' | '));
-    });
-    console.log();
-  };
-
   const reset = () => {
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
@@ -26,6 +19,6 @@ export function createBoard() {
     }
   };
 
-  return { getBoard: () => board, mark, display, reset };
+  return { getBoard: () => board, mark, reset };
 }
 
